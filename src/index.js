@@ -413,7 +413,7 @@ var tagUiUx = Bodies.rectangle(containerWidth / 2 + 150, 500, 164, 56, {
   Render.run(render);
 }
 
-var containerElement = document.querySelector(".tag-canvas");
+var containerElement = document.querySelector(".balls-area");
 
 var observer = new IntersectionObserver((entries, observer) => {
   entries.forEach((entry) => {
