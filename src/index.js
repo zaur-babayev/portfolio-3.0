@@ -54,53 +54,32 @@ $(".nav-home, .nav-link").each(function (index) {
   });
 });
 
-
-
-// $(document).ready(function () {
-//   $(".images").slick({
-//     centerMode: true,
-//     dots: false,
-//     infinite: true,
-//     arrows: false,
-//     speed: 500,
-//     slidesToShow: 1,
-//     slidesToScroll: 1,
-//   });
-// });
-
-const locoScroll = new LocomotiveScroll({
-  el: document.querySelector(".locomotive-scroll"),
-  smooth: true,
-  smartphone: {
-    smooth: true,
-    breakpoint: 0,
-  },
-  tablet: {
-    smooth: true,
-  },
-  smoothMobile: 0,
-  multiplier: 1.0,
+let lenis;
+if (Webflow.env("editor") === undefined) {
+  lenis = new Lenis({
+    lerp: 0.1,
+    wheelMultiplier: 0.7,
+    gestureOrientation: "vertical",
+    normalizeWheel: false,
+    smoothTouch: false,
+  });
+  function raf(time) {
+    lenis.raf(time);
+    requestAnimationFrame(raf);
+  }
+  requestAnimationFrame(raf);
+}
+$("[data-lenis-start]").on("click", function () {
+  lenis.start();
 });
-
-// Wait 2 seconds then calculate the new page height
-setTimeout(() => {
-  locoScroll.update();
-}, 2000);
-
-// Optional Script for Anchor Links
-$(".nav__link.is--first").on("click", function () {
-  const slider = document.querySelector("#about");
-  locoScroll.scrollTo(slider);
+$("[data-lenis-stop]").on("click", function () {
+  lenis.stop();
 });
-
-$(".nav__link.is--second").on("click", function () {
-  const slider = document.querySelector("#projects");
-  locoScroll.scrollTo(slider);
+$("[data-lenis-toggle]").on("click", function () {
+  $(this).toggleClass("stop-scroll");
+  if ($(this).hasClass("stop-scroll")) {
+    lenis.stop();
+  } else {
+    lenis.start();
+  }
 });
-
-$(".nav__link.is--third").on("click", function () {
-  const slider = document.querySelector("#contact");
-  locoScroll.scrollTo(slider);
-});
-
-// falling tags
