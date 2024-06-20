@@ -1,4 +1,4 @@
-let typeSplit = new SplitType(".nav-home, .nav-link", {
+let typeSplit = new SplitType(".nav-home, .navigation-link", {
   types: "words, chars",
   tagName: "span",
 });
@@ -18,7 +18,7 @@ $(".char").each(function (index) {
   $(this).attr("letter", text);
 });
 
-$(".nav-home, .nav-link").each(function (index) {
+$(".nav-home, .navigation-link").each(function (index) {
   function resetText() {
     if (myInterval !== undefined) {
       clearInterval(myInterval);
@@ -54,32 +54,4 @@ $(".nav-home, .nav-link").each(function (index) {
   });
 });
 
-let lenis;
-if (Webflow.env("editor") === undefined) {
-  lenis = new Lenis({
-    lerp: 0.1,
-    wheelMultiplier: 0.7,
-    gestureOrientation: "vertical",
-    normalizeWheel: false,
-    smoothTouch: false,
-  });
-  function raf(time) {
-    lenis.raf(time);
-    requestAnimationFrame(raf);
-  }
-  requestAnimationFrame(raf);
-}
-$("[data-lenis-start]").on("click", function () {
-  lenis.start();
-});
-$("[data-lenis-stop]").on("click", function () {
-  lenis.stop();
-});
-$("[data-lenis-toggle]").on("click", function () {
-  $(this).toggleClass("stop-scroll");
-  if ($(this).hasClass("stop-scroll")) {
-    lenis.stop();
-  } else {
-    lenis.start();
-  }
-});
+
