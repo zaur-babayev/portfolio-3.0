@@ -1,4 +1,4 @@
-let typeSplit = new SplitType(".navigation-link", {
+let typeSplit = new SplitType(".random-letters", {
   types: "words, chars",
   tagName: "span",
 });
@@ -13,14 +13,14 @@ function getRandomLetter(length) {
   return result;
 }
 
-// comment
+// com
 
 $(".char").each(function (index) {
   let text = $(this).text();
   $(this).attr("letter", text);
 });
 
-$(".navigation-link").each(function (index) {
+$(".random-letters").each(function (index) {
   function resetText() {
     if (myInterval !== undefined) {
       clearInterval(myInterval);
